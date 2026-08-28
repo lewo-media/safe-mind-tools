@@ -1,0 +1,46 @@
+{
+    "name": "safe-mind",
+    "version": "0.1.0",
+    "description": "Official CLI for Safe Mind - create and manage psychological risk assessments (Gefährdungsbeurteilung psychischer Belastung) from the terminal.",
+    "keywords": [
+        "safe-mind",
+        "gefährdungsbeurteilung",
+        "psychische-belastung",
+        "gbu-psyche",
+        "arbeitsschutz",
+        "employee-survey",
+        "cli"
+    ],
+    "homepage": "https://www.safe-mind.de/developers",
+    "license": "MIT",
+    "type": "module",
+    "bin": {
+        "safe-mind": "./lib/index.js"
+    },
+    "types": "./lib/index.d.ts",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./lib/index.d.ts",
+                "default": "./lib/index.js"
+            }
+        }
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "scripts": {
+        "build:lib": "tsc --project tsconfig.esm.json",
+        "check:types": "tsc --noEmit",
+        "test": "vitest run"
+    },
+    "files": [
+        "lib",
+        "README.md"
+    ],
+    "devDependencies": {
+        "typescript": "^5.6.0",
+        "vitest": "^3.2.4",
+        "@types/node": "^22.0.0"
+    }
+}
