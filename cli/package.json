@@ -1,10 +1,10 @@
 {
     "name": "safe-mind",
-    "version": "0.1.0",
-    "description": "Official CLI for Safe Mind - create and manage psychological risk assessments (Gefährdungsbeurteilung psychischer Belastung) from the terminal.",
+    "version": "0.1.1",
+    "description": "Official CLI for Safe Mind - create and manage psychological risk assessments (Gef\u00e4hrdungsbeurteilung psychischer Belastung) from the terminal.",
     "keywords": [
         "safe-mind",
-        "gefährdungsbeurteilung",
+        "gef\u00e4hrdungsbeurteilung",
         "psychische-belastung",
         "gbu-psyche",
         "arbeitsschutz",
@@ -42,5 +42,13 @@
         "typescript": "^5.6.0",
         "vitest": "^3.2.4",
         "@types/node": "^22.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lewo-media/safe-mind-tools.git",
+        "directory": "cli"
+    },
+    "bugs": {
+        "url": "https://github.com/lewo-media/safe-mind-tools/issues"
     }
 }

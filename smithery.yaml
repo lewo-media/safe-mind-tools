@@ -1,0 +1,10 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      apiKey:
+        type: string
+        description: Safe Mind API key (sm_live_...), optional - tools can onboard a new account
+  commandFunction: |-
+    (config) => ({ command: 'npx', args: ['-y', 'safe-mind-mcp'], env: config.apiKey ? { SAFE_MIND_API_KEY: config.apiKey } : {} })

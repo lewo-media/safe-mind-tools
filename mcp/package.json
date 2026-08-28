@@ -1,12 +1,12 @@
 {
     "name": "safe-mind-mcp",
-    "version": "0.1.0",
-    "description": "MCP server for Safe Mind - lets AI assistants (Claude, ChatGPT, Gemini, Cursor and any MCP client) create and manage psychological risk assessments (Gefährdungsbeurteilung psychischer Belastung).",
+    "version": "0.1.1",
+    "description": "MCP server for Safe Mind - lets AI assistants (Claude, ChatGPT, Gemini, Cursor and any MCP client) create and manage psychological risk assessments (Gef\u00e4hrdungsbeurteilung psychischer Belastung).",
     "keywords": [
         "mcp",
         "model-context-protocol",
         "safe-mind",
-        "gefährdungsbeurteilung",
+        "gef\u00e4hrdungsbeurteilung",
         "psychische-belastung",
         "gbu-psyche",
         "arbeitsschutz",
@@ -47,5 +47,14 @@
         "typescript": "^5.6.0",
         "vitest": "^3.2.4",
         "@types/node": "^22.0.0"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lewo-media/safe-mind-tools.git",
+        "directory": "mcp"
+    },
+    "bugs": {
+        "url": "https://github.com/lewo-media/safe-mind-tools/issues"
+    },
+    "mcpName": "io.github.lewo-media/safe-mind"
 }

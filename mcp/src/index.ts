@@ -38,7 +38,7 @@ async function run(fn: () => Promise<unknown>): Promise<ToolResult> {
 }
 
 export function buildServer(): McpServer {
-    const server = new McpServer({ name: 'safe-mind', version: '0.1.0' });
+    const server = new McpServer({ name: 'safe-mind', version: '0.1.1' });
 
     server.registerTool(
         'safe_mind_register',

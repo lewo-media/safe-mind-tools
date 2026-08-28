@@ -8,7 +8,7 @@ import { parseArgs, flagString, flagStrings, flagNumber } from './args.js';
 import { SafeMindClient, ApiError, DEFAULT_API_URL, type SurveyCreateInput } from './client.js';
 import { loadConfig, saveConfig, clearConfig } from './config.js';
 
-const VERSION = '0.1.0';
+const VERSION = '0.1.1';
 
 const HELP = `safe-mind ${VERSION} - Safe Mind CLI (https://www.safe-mind.de/developers)
 
