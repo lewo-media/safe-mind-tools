@@ -1,0 +1,309 @@
+{
+  "author": "lewo-media",
+  "authorUrl": "https://github.com/lewo-media",
+  "description": "MCP server for Safe Mind - lets AI assistants (Claude, ChatGPT, Gemini, Cursor and any MCP client) create and manage psychological risk assessments (Gefährdungsbeurteilung psychischer Belastung).",
+  "homepage": "https://www.safe-mind.de/developers",
+  "identifier": "lewo-media-safe-mind-tools",
+  "name": "safe-mind",
+  "prompts": [],
+  "resources": [],
+  "tags": [
+    "mcp",
+    "model-context-protocol",
+    "safe-mind",
+    "gefährdungsbeurteilung",
+    "psychische-belastung",
+    "gbu-psyche",
+    "arbeitsschutz",
+    "employee-survey"
+  ],
+  "tools": [
+    {
+      "name": "safe_mind_register",
+      "description": "Create a Safe Mind account with a company. Safe Mind runs the legally required psychological risk assessment (Gefährdungsbeurteilung psychischer Belastung, GBU Psyche) for German companies. A verification code is sent by email; verify with safe_mind_verify_email.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "employeeCount": {
+            "type": "integer",
+            "exclusiveMinimum": 0
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "firstName",
+          "lastName",
+          "companyName",
+          "employeeCount"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_verify_email",
+      "description": "Verify a Safe Mind account with the code received by email.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "code"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_get_api_key",
+      "description": "Obtain an API key for a verified Safe Mind account (email + password). The key is kept in memory for this session; for permanent use set the SAFE_MIND_API_KEY environment variable.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_me",
+      "description": "Show the authenticated Safe Mind account and company.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_list_departments",
+      "description": "List the company departments/areas (Tätigkeitsbereiche) used for survey segmentation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_create_department",
+      "description": "Create a company department/area (Tätigkeitsbereich), e.g. \"Produktion (Halle 1, 2)\".",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_list_locations",
+      "description": "List the company locations (Standorte).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_create_location",
+      "description": "Create a company location (Standort).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_create_survey",
+      "description": "Create a survey draft for the psychological risk assessment. Departments are passed by name and created automatically if missing. Returns edit and preview links; the survey is started by the account owner in the Safe Mind app.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "description": "YYYY-MM-DD, first day of the survey"
+          },
+          "durationWeeks": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "employeeCount": {
+            "type": "integer",
+            "exclusiveMinimum": 0
+          },
+          "departments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "analyticsMinThreshold": {
+            "type": "integer",
+            "minimum": 5,
+            "description": "Minimum group size for segmented analytics (default 7)"
+          }
+        },
+        "required": [
+          "startDate",
+          "durationWeeks",
+          "employeeCount",
+          "departments"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_list_surveys",
+      "description": "List the surveys of the company with status and dates.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_get_survey",
+      "description": "Show one survey: status, timeframe, participation link.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "surveyId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "surveyId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "safe_mind_get_analytics",
+      "description": "Aggregated survey results (overall and per category), optionally grouped. Groups below the anonymity threshold are never returned.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "surveyId": {
+            "type": "string"
+          },
+          "groupBy": {
+            "type": "string",
+            "enum": [
+              "department",
+              "location",
+              "ageGroup",
+              "gender"
+            ]
+          }
+        },
+        "required": [
+          "surveyId"
+        ],
+        "additionalProperties": false,
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    }
+  ],
+  "version": "0.1.1"
+}
